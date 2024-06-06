@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.oak.JPAexamples.JPA_service.DTO.EmployeeDto;
 // import com.oak.JPAexamples.JPA_service.DTO.EmployeeDTO;
 import com.oak.JPAexamples.JPA_service.Entity.Employee;
 import com.oak.JPAexamples.JPA_service.Services.EmployeeService;
@@ -45,8 +46,8 @@ public class EmployeeApi {
     // // return new ResponseEntity<Employee>(employee.HttpStatus.OK);
     // }
     @PostMapping
-    public ResponseEntity<Employee> save(@RequestBody Employee employee) {
-        return new ResponseEntity<Employee>(employeeservice.save(employee), HttpStatus.OK);
+    public ResponseEntity<EmployeeDto> save(@RequestBody EmployeeDto employee) {
+        return new ResponseEntity<EmployeeDto>(employeeservice.save(employee), HttpStatus.OK);
     }
 
     // public ResponseEntity<Employee> update(@RequestBody Employee employee) {

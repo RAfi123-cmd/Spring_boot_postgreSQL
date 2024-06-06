@@ -2,15 +2,16 @@ package com.oak.JPAexamples.JPA_service.Services;
 
 import java.util.List;
 
-import com.oak.JPAexamples.JPA_service.Entity.Employee;
+import com.oak.JPAexamples.JPA_service.DTO.EmployeeDto;
+// import com.oak.JPAexamples.JPA_service.Entity.Employee;
 
 public interface EmployeeService {
-    public Employee save(Employee employee);
+    public EmployeeDto save(EmployeeDto employee);
 
-    public List<Employee> getall();
+    public List<EmployeeDto> getall();
 
-    public Employee getById(long Id);
+    public EmployeeDto getById(long Id);
 
-    public Employee deleteById(long Id);
+    public EmployeeDto deleteById(long Id);
 
 }
