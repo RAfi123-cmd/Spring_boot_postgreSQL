@@ -1,6 +1,7 @@
 package com.oak.JPAexamples.JPA_service.Services;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -29,8 +30,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public List<EmployeeDto> getall() {
-
-        return null;
+        List<Employee> employeeList = employeerepository.findAll();
+        List<EmployeeDto> dtoList = employeeList.stream().map(employee -> modelmapper.map(employee, EmployeeDto.class))
+                .collect(Collectors.toList());
+        return dtoList;
     }
 
     @Override
