@@ -1,6 +1,7 @@
 package com.oak.JPAexamples.JPA_service.Services;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
@@ -25,7 +26,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public EmployeeDto getById(long Id) {
-        return null;
+        Optional<Employee> employee = employeerepository.findById(Id);
+        EmployeeDto dto = modelmapper.map(employee, EmployeeDto.class);
+        return dto;
     }
 
     @Override

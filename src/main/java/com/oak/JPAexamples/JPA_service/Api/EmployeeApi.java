@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.oak.JPAexamples.JPA_service.DTO.EmployeeDto;
 // import com.oak.JPAexamples.JPA_service.DTO.EmployeeDTO;
-import com.oak.JPAexamples.JPA_service.Entity.Employee;
+// import com.oak.JPAexamples.JPA_service.Entity.Employee;
 import com.oak.JPAexamples.JPA_service.Services.EmployeeService;
 
 import lombok.RequiredArgsConstructor;
@@ -32,9 +32,8 @@ public class EmployeeApi {
 
     // localhost:8080/employee
     @PostMapping("/{id}")
-    public ResponseEntity<Employee> getbyId(@PathVariable("id") long Id) {
-        Employee employee = new Employee();
-        return new ResponseEntity<Employee>(employee, HttpStatus.OK);
+    public ResponseEntity<EmployeeDto> getbyId(@PathVariable("id") long Id) {
+        return new ResponseEntity<EmployeeDto>(employeeservice.getById(Id), HttpStatus.OK);
     }
 
     // @GetMapping
