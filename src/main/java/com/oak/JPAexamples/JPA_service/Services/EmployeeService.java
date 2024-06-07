@@ -8,6 +8,8 @@ import com.oak.JPAexamples.JPA_service.DTO.EmployeeDto;
 public interface EmployeeService {
     public EmployeeDto save(EmployeeDto employee);
 
+    public EmployeeDto update(EmployeeDto employeedto);
+
     public List<EmployeeDto> getall();
 
     public EmployeeDto getById(long Id);

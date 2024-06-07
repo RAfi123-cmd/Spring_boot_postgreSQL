@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 // import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 // import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -56,9 +57,12 @@ public class EmployeeApi {
     public ResponseEntity<List<EmployeeDto>> getall() {
         return new ResponseEntity<List<EmployeeDto>>(employeeservice.getall(), HttpStatus.OK);
     }
-    // public ResponseEntity<Employee> update(@RequestBody Employee employee) {
 
-    // }
+    @PutMapping("/{id}")
+    public ResponseEntity<EmployeeDto> update(@PathVariable("id") long Id, @RequestBody EmployeeDto employeedto) {
+        employeedto.setId(Id);
+        return new ResponseEntity<EmployeeDto>(employeeservice.update(employeedto), HttpStatus.OK);
+    }
 
     // public ResponseEntity<Employee> delete(long id) {
 

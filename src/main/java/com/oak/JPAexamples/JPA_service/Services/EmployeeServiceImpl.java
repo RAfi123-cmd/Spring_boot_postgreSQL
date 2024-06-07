@@ -56,4 +56,17 @@ public class EmployeeServiceImpl implements EmployeeService {
         // employee.setLastUpdateDate(employee_added.getLastUpdateDate());
     }
 
+    @Override
+    public EmployeeDto update(EmployeeDto employeedto) {
+        Employee employee = employeerepository.findById(employeedto.getId())
+                .orElseThrow(() -> new IllegalArgumentException());
+        employee.setFirstName(employeedto.getFirstName());
+        employee.setLastName(employeedto.getLastName());
+        employee.setAge(employeedto.getAge());
+        employee.setEmail(employeedto.getEmail());
+        employee = employeerepository.save(employee);
+        employeedto = modelmapper.map(employee, EmployeeDto.class);
+        return employeedto;
+    }
+
 }
