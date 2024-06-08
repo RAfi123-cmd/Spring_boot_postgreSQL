@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+// import org.hibernate.sql.Delete;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +22,14 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public EmployeeDto deleteById(long Id) {
-        return null;
+        Employee employee = employeerepository.findById(Id).orElseThrow(() -> new IllegalArgumentException());
+        EmployeeDto employeeDto = modelmapper.map(employee, EmployeeDto.class);
+        // employeerepository.deleteById(Id);
+        employeerepository.delete(employee);
+        // Delete list
+        // List<Employee> list=employeerepository.findAll();
+        // employeerepository.deleteAll(list);
+        return employeeDto;
     }
 
     @Override
