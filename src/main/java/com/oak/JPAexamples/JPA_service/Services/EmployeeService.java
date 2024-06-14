@@ -16,4 +16,8 @@ public interface EmployeeService {
 
     public EmployeeDto deleteById(long Id);
 
+    public long count();
+
+    public boolean existby(long Id);
+
 }

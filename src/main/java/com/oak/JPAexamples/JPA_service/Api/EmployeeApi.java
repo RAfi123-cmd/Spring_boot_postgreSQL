@@ -35,6 +35,12 @@ public class EmployeeApi {
     // localhost:8080/employee
     @PostMapping("/{id}")
     public ResponseEntity<EmployeeDto> getbyId(@PathVariable("id") long Id) {
+        boolean control = employeeservice.existby(Id);
+        if (control)
+            System.out.println("Employee is present");
+        else
+            System.out.println("Employee is not in the Database");
+
         return new ResponseEntity<EmployeeDto>(employeeservice.getById(Id), HttpStatus.OK);
     }
 
@@ -56,6 +62,7 @@ public class EmployeeApi {
 
     @GetMapping
     public ResponseEntity<List<EmployeeDto>> getall() {
+        System.out.println("The count is:" + employeeservice.count());
         return new ResponseEntity<List<EmployeeDto>>(employeeservice.getall(), HttpStatus.OK);
     }
 

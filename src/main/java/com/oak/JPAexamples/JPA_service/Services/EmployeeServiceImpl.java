@@ -77,4 +77,14 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employeedto;
     }
 
+    @Override
+    public long count() {
+        return employeerepository.count();
+    }
+
+    @Override
+    public boolean existby(long Id) {
+        return employeerepository.existsById(Id);
+    }
+
 }
