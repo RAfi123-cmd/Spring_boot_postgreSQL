@@ -1,11 +1,15 @@
 package com.oak.JPAexamples.JPA_service.Services;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 // import org.hibernate.sql.Delete;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.oak.JPAexamples.JPA_service.DTO.EmployeeDto;
@@ -85,6 +89,26 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public boolean existby(long Id) {
         return employeerepository.existsById(Id);
+    }
+
+    @Override
+    public List<EmployeeDto> pagination(int offset, int pagesize) {
+        Page<Employee> employeeList = employeerepository.findAll(PageRequest.of(offset, pagesize));
+        List<EmployeeDto> dtolist = employeeList.stream().map(employee -> modelmapper.map(employee, EmployeeDto.class))
+                .collect(Collectors.toList());
+        return dtolist;
+    }
+
+    @Override
+    public List<EmployeeDto> sorting(String direction, String field) {
+        List<Employee> employeeList = new ArrayList<>();
+        if (direction.equals("asc") || direction.equals("ASC"))
+            employeeList = employeerepository.findAll(Sort.by(Sort.Direction.ASC, field));
+        else
+            employeeList = employeerepository.findAll(Sort.by(Sort.Direction.DESC, field));
+        List<EmployeeDto> dtolist = employeeList.stream().map(employee -> modelmapper.map(employee, EmployeeDto.class))
+                .collect(Collectors.toList());
+        return dtolist;
     }
 
 }

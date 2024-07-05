@@ -77,6 +77,19 @@ public class EmployeeApi {
         return new ResponseEntity<EmployeeDto>(employeeservice.deleteById(Id), HttpStatus.OK);
     }
 
+    @GetMapping("/pagination/{offset}/{pagesize}")
+    public ResponseEntity<List<EmployeeDto>> employeepagination(@PathVariable("offset") int offset,
+            @PathVariable("pagesize") int pagesize) {
+        return ResponseEntity.ok(employeeservice.pagination(offset, pagesize));
+
+    }
+
+    @GetMapping("/sortedlist/{direction}/{field}")
+    public ResponseEntity<List<EmployeeDto>> sortinglist(@PathVariable("direction") String direction,
+            @PathVariable("field") String field) {
+        return ResponseEntity.ok(employeeservice.sorting(direction, field));
+    }
+
     // public ResponseEntity<List<Employee>> pagination() {
 
     // }

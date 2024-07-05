@@ -20,4 +20,8 @@ public interface EmployeeService {
 
     public boolean existby(long Id);
 
+    public List<EmployeeDto> pagination(int offset, int pagesize);
+
+    public List<EmployeeDto> sorting(String direction, String field);
+
 }
