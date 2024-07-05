@@ -24,17 +24,43 @@ public class QueriesApi {
     }
 
     @GetMapping("/multiple fields")
-    public ResponseEntity<List<Employee>> getByFirstNameandLastName(){
+    public ResponseEntity<List<Employee>> getByFirstNameandLastName() {
         return ResponseEntity.ok(employeeRepository.findByFirtsNameAndLastName("Josh", "Malerman"));
     }
 
     @GetMapping("/multiplefieldsor")
-    public ResponseEntity<List<Employee>> getByFirstNameorLastName(){
+    public ResponseEntity<List<Employee>> getByFirstNameorLastName() {
         return ResponseEntity.ok(employeeRepository.findByFirtsNameOrLastName("Josh", "Malerman"));
     }
 
     @GetMapping("/containing")
-    public ResponseEntity<List<Employee>> containing(){
+    public ResponseEntity<List<Employee>> containing() {
         return ResponseEntity.ok(employeeRepository.findByEmailContaining("gmail"));
     }
+
+    @GetMapping("/greater")
+    public ResponseEntity<List<Employee>> greater() {
+        return ResponseEntity.ok(employeeRepository.findByAgeGreaterThan(30));
+    }
+
+    @GetMapping("/lessthan")
+    public ResponseEntity<List<Employee>> less() {
+        return ResponseEntity.ok(employeeRepository.findByAgeLessThan(40));
+    }
+
+    @GetMapping("/lessequels")
+    public ResponseEntity<List<Employee>> lessequels() {
+        return ResponseEntity.ok(employeeRepository.findByAgeLessThanEqual(40));
+    }
+
+    @GetMapping("/greaterandless")
+    public ResponseEntity<List<Employee>> greaterandless() {
+        return ResponseEntity.ok(employeeRepository.findByAgeGreaterThanAndAgeLessThan(20, 50));
+    }
+
+    @GetMapping("/between")
+    public ResponseEntity<List<Employee>> between() {
+        return ResponseEntity.ok(employeeRepository.findByAgeBetween(20, 50));
+    }
+
 }
