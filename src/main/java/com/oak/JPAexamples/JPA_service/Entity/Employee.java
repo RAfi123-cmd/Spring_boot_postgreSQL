@@ -41,16 +41,16 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long Id;
     @Column(nullable = false, name = "Name")
-    private String FirstName;
+    private String firstName;
     @Column(length = 60)
-    private String LastName;
+    private String lastName;
     @Column(unique = true)
-    private String Email;
-    private int Age;
+    private String email;
+    private int age;
     @CreationTimestamp
-    private Timestamp CreatedDate;
+    private Timestamp createdDate;
     @UpdateTimestamp
-    private Timestamp LastUpdateDate;
+    private Timestamp lastUpdateDate;
 
     // DateTimeFormatter format=new DateTimeFormat("yyyy.mm.dd")
     // format(LocalDateTime.new());

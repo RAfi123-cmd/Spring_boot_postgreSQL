@@ -22,4 +22,19 @@ public class QueriesApi {
     public ResponseEntity<List<Employee>> getByFirstName() {
         return ResponseEntity.ok(employeeRepository.findByFirstName("John"));
     }
+
+    @GetMapping("/multiple fields")
+    public ResponseEntity<List<Employee>> getByFirstNameandLastName(){
+        return ResponseEntity.ok(employeeRepository.findByFirtsNameAndLastName("Josh", "Malerman"));
+    }
+
+    @GetMapping("/multiplefieldsor")
+    public ResponseEntity<List<Employee>> getByFirstNameorLastName(){
+        return ResponseEntity.ok(employeeRepository.findByFirtsNameOrLastName("Josh", "Malerman"));
+    }
+
+    @GetMapping("/containing")
+    public ResponseEntity<List<Employee>> containing(){
+        return ResponseEntity.ok(employeeRepository.findByEmailContaining("gmail"));
+    }
 }
