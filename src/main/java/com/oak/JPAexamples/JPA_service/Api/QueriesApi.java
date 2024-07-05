@@ -63,4 +63,20 @@ public class QueriesApi {
         return ResponseEntity.ok(employeeRepository.findByAgeBetween(20, 50));
     }
 
+    @GetMapping("/inusage")
+    public ResponseEntity<List<Employee>> inUsage() {
+        String[] namearray = { "Jacob", "Michael", "Adam", "Daniel", "John", "Josh", "Emily", "William" };
+        return ResponseEntity.ok(employeeRepository.findByFirstNameIn(namearray));
+    }
+
+    @GetMapping("/first")
+    public ResponseEntity<List<Employee>> first() {
+        return ResponseEntity.ok(employeeRepository.findFirst3ByOrdersByFirstNameAsc());
+    }
+
+    @GetMapping("/last")
+    public ResponseEntity<List<Employee>> last() {
+        return ResponseEntity.ok(employeeRepository.findLast3ByOrdersByFirstNameDesc());
+    }
+
 }

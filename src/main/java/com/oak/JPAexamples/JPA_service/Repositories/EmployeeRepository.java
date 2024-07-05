@@ -25,4 +25,10 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 
     List<Employee> findByAgeBetween(int age1, int age2);
 
+    List<Employee> findByFirstNameIn(String[] array);
+
+    List<Employee> findFirst3ByOrdersByFirstNameAsc();
+
+    List<Employee> findLast3ByOrdersByFirstNameDesc();
+
 }
