@@ -9,11 +9,14 @@ import org.hibernate.annotations.CreationTimestamp;
 // import org.springframework.format.annotation.DateTimeFormat;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 // import jakarta.persistence.Index;
 // import jakarta.persistence.Table;
 // import jakarta.persistence.UniqueConstraint;
@@ -51,6 +54,9 @@ public class Employee {
     private Timestamp createdDate;
     @UpdateTimestamp
     private Timestamp lastUpdateDate;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id", referencedColumnName = "Id")
+    private Address address;
 
     // DateTimeFormatter format=new DateTimeFormat("yyyy.mm.dd")
     // format(LocalDateTime.new());
