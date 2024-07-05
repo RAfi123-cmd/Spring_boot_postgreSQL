@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.oak.JPAexamples.JPA_service.Entity.Employee;
+import com.oak.JPAexamples.JPA_service.Entity.Task;
 import com.oak.JPAexamples.JPA_service.Repositories.EmployeeRepository;
+import com.oak.JPAexamples.JPA_service.Repositories.TaskRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -17,6 +19,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class QueriesApi {
     private final EmployeeRepository employeeRepository;
+    private final TaskRepository taskRepository;
 
     @GetMapping("/findbyfirstname")
     public ResponseEntity<List<Employee>> getByFirstName() {
@@ -77,6 +80,21 @@ public class QueriesApi {
     @GetMapping("/last")
     public ResponseEntity<List<Employee>> last() {
         return ResponseEntity.ok(employeeRepository.findLast3ByOrdersByFirstNameDesc());
+    }
+
+    @GetMapping("/jpqlexample")
+    public ResponseEntity<List<Employee>> jpql() {
+        return ResponseEntity.ok(employeeRepository.findByAgeGreaterThanEquels(65));
+    }
+
+    @GetMapping("/native")
+    public ResponseEntity<List<Employee>> nativequery() {
+        return ResponseEntity.ok(employeeRepository.findLastNameEqual("Verdon"));
+    }
+
+    @GetMapping("/tasknamed")
+    public ResponseEntity<List<Task>> tasknamed() {
+        return ResponseEntity.ok(taskRepository.findByTime(30));
     }
 
 }
